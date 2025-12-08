@@ -1,3 +1,11 @@
+*
+{
+  --blue--: #050E3C;
+  --white--: #FFFFFF;
+}
+
+
+
 html {
   font-size: 14px;
 }
@@ -18,7 +26,12 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+  margin-bottom: 60px;;
+  background: var(--blue--);
+}
+
+footer{
+  background: var(--white--);
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
