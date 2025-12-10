@@ -12,10 +12,10 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <img src="./lib/images/atmos-logo.png" alt="Atmos Logo" style="height:70px; width:70px; margin-right:10px;"/>
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Atmos</a>
+                <img src="@Url.Content("~/lib/images/atmos-logo.png")" alt="Logo" style="height:65px;  margin-right:10px;"/>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,13 +23,36 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Sobre nós</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Catalog" asp-action="catalog">Catálogo</a>
                         </li>
                     </ul>
                 </div>
+            </div>
+
+            <div class="cidade-box">
+                <div class="flex items-center space-x-4">
+                        <form asp-controller="Home" asp-action="DefinirCidade" method="post" class="flex items-center space-x-3">
+                            <label for="cidade" class="text-gray-400 font-medium"> </label>
+                            <select name="cidade" id="cidade" onchange="this.form.submit()"
+                                    class="border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-600 font-medium">
+                                <option value="">Escolha a cidade</option>
+                                <option value="São Paulo">São Paulo</option>
+                                <option value="Rio de Janeiro">Rio de Janeiro</option>
+                                <option value="Belo Horizonte">Belo Horizonte</option>
+                                <option value="Curitiba">Curitiba</option>
+                                <option value="Porto Alegre">Porto Alegre</option>
+                                <option value="Salvador">Salvador</option>
+                                <option value="Brasília">Brasília</option>
+                            </select>
+                        </form>
+                    </div>
+            
             </div>
         </nav>
     </header>

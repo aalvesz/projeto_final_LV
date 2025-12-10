@@ -1,8 +1,75 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Página Inicial";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="carouselExampleCaptions" class="carousel slide carousel-full-screen" data-bs-ride="carousel" data-bs-interval="5000">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="@Url.Content("~/lib/images/banners/fnaf.png")" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="@Url.Content("~/lib/images/banners/wicked.png")" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="@Url.Content("~/lib/images/banners/zootopia.png")" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="@Url.Content("~/lib/images/banners/avatar3.jpg")" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+  </div>
+  
+  </button>
+</div>
+
+<div class="text-center mt-5">
+    <h3 class="exibicao" >Em Exibição</h3>
+    <p> Escolha seu filme e defina o próximo passo!</p>
+    <br>
+</div>
+
+
+
+<div class="d-flex justify-content-center gap-4 mb-5">
+    <div class="card" style="width: 15rem;">
+    <img src="@Url.Content("~/lib/images/nuvens.jpg")" class="card-img-top" alt="nuvem">
+    <div class="card-body">
+        <h5 class="card-title">Conferir a previsão</h5>
+        <p class="card-text">'Spoiler' do tempo lá fora.</p>
+        <a href="#" class="btn btn-primary">Clima</a>
+    </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+    <img src="@Url.Content("~/lib/images/sessao.jpg")" class="card-img-top" alt="sessao">
+    <div class="card-body">
+        <h5 class="card-title">Horários</h5>
+        <p class="card-text">Sobre os horários dos filmes.</p>
+        <a href="#" class="btn btn-primary">Ver horários</a>
+    </div>
+    </div>
+
+
+    <div class="card" style="width: 18rem;">
+    <img src="@Url.Content("~/lib/images/ticket.jpg")" class="card-img-top" alt="ticket">
+    <div class="card-body">
+        <h5 class="card-title">Comprar Ingresso</h5>
+        <p class="card-text">Garanta já o seu ingresso.</p>
+        <a href="#" class="btn btn-primary">Comprar</a>
+    </div>
+    </div>
+
 </div>
