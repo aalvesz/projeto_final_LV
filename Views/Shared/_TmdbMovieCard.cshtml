@@ -23,6 +23,10 @@
         }
 
         <div class="mt-auto d-grid gap-2">
+            <a class="btn btn-outline-secondary" asp-controller="Tmdb" asp-action="Details" asp-route-id="@Model.Id">
+            Ver detalhes
+            </a>
+
             <button type="button"
                     class="btn btn-success js-import"
                     data-tmdb-id="@Model.Id">
