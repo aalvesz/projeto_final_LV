@@ -76,6 +76,12 @@ p{
   margin-bottom: 2rem;
 }
 
+.card-img-cartaz{
+  height: 390px;
+  width: 100%;
+  object-fit: cover;
+}
+
 /* Carrosel */
 .carousel {
     width: 100vw;
@@ -97,11 +103,13 @@ p{
 
 .navbar{
   background: var(--blue--);
+  padding-top: 20px;
 }
 
 .nav-link{
   color: var(--white--) !important;
 }
+
 
 /* Footer */
 
