@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Atmos </title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="~/lib/images" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/projeto_final_LV.styles.css" asp-append-version="true" />
+</head>
+<body>
+    
+    @{
+        var cidadeAtual = Context.Request.Cookies["CidadeSelecionada"];
+    }
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+    
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+        <img src="@Url.Content("~/lib/images/atmos-logo.png")" alt="Logo" style="height:65px; margin-right:10px;"/>
+        </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="navbarSupportedContent">
+        
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Início</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Tmdb" asp-action="Search">Importar filmes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Movies" asp-action="Index">Catálogo</a>
+            </li>
+
+        </ul>
+
+        <div class="card-weather d-flex align-items-center me-3">
+            <img src="@Url.Content("~/lib/images/icons/icone.png")" alt="Weather Icon" style="height:30px; width:30px;"/>
+            <div class="weather-info ms-2">
+                <div id="temperature" class="temperature">--°C</div>
+                <div id="condition" class="condition">--</div>
+            </div>
+            
+            
+        </div>
+        
+        <div class="navbar-nav ms-auto"> 
+            <div class="cidade-box">
+                <form asp-controller="Home" asp-action="DefinirCidade" method="post">
+                    @Html.AntiForgeryToken()
+                    <select name="cidade" id="cidade" onchange="this.form.submit()"
+                            class="form-select border border-gray-200 rounded-lg px-3 py-2 text-gray-600 font-medium">
+                        <option value="">Escolha a cidade</option>
+
+                        <option value="Ariquemes"
+                                selected="@(cidadeAtual == "Ariquemes" ? "selected" : null)">
+                            Ariquemes
+                        </option>
+
+                        <option value="Ji-Parana"
+                                selected="@(cidadeAtual == "Ji-Parana" ? "selected" : null)">
+                            Ji-Paraná
+                        </option>
+
+                        <option value="Ouro Preto d'Oeste"
+                                selected="@(cidadeAtual == "Ouro Preto d'Oeste" ? "selected" : null)">
+                            Ouro Preto d'Oeste
+                        </option>
+
+                        <option value="Presidente Médici"
+                                selected="@(cidadeAtual == "Presidente Médici" ? "selected" : null)">
+                            Presidente Médici
+                        </option>
+
+                        <option value="Vilhena"
+                                selected="@(cidadeAtual == "Vilhena" ? "selected" : null)">
+                            Vilhena
+                        </option>
+                    </select>
+                </form>
+            </div>
+        </div>
+        
+    </div> </div>
+
+           
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - Atmos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

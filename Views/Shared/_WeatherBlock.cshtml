@@ -1,0 +1,25 @@
+@model projeto_final_LV.Models.Weather.WeatherDailySummary?
+
+@if (Model is null)
+{
+    <div class="alert alert-secondary mb-0">
+        Previsão do tempo indisponível.
+    </div>
+}
+else
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title mb-3">Previsão do tempo</h5>
+            <p class="mb-1">
+                <strong>Data:</strong> @Model.Date.ToString("dd/MM/yyyy")
+            </p>
+            <p class="mb-1">
+                <strong>Temp. mínima:</strong> @(Model.Min?.ToString("0.0") ?? "-") °C
+            </p>
+            <p class="mb-0">
+                <strong>Temp. máxima:</strong> @(Model.Max?.ToString("0.0") ?? "-") °C
+            </p>
+        </div>
+    </div>
+}
