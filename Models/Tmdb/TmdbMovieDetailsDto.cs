@@ -16,23 +16,28 @@ public sealed class TmdbMovieDetailsDto
     [JsonPropertyName("overview")]
     public string? Overview { get; set; }
 
+    // TMDb manda a data como string (yyyy-MM-dd)
     [JsonPropertyName("release_date")]
     public string? ReleaseDate { get; set; }
 
-    [JsonPropertyName("runtime")]
-    public int? Runtime { get; set; }
-
-    [JsonPropertyName("original_language")]
-    public string? OriginalLanguage { get; set; }
-
-    [JsonPropertyName("vote_average")]
-    public decimal? VoteAverage { get; set; }
+    [JsonPropertyName("genres")]
+    public List<TmdbGenreDto> Genres { get; set; } = [];
 
     [JsonPropertyName("poster_path")]
     public string? PosterPath { get; set; }
 
-    [JsonPropertyName("genres")]
-    public List<TmdbGenreDto> Genres { get; set; } = [];
+    [JsonPropertyName("original_language")]
+    public string? OriginalLanguage { get; set; }
+
+    [JsonPropertyName("runtime")]
+    public int? Runtime { get; set; }
+
+    [JsonPropertyName("vote_average")]
+    public decimal? VoteAverage { get; set; }
+
+    // ==== NOVO: créditos (elenco) ====
+    [JsonPropertyName("credits")]
+    public TmdbCreditsDto? Credits { get; set; }
 }
 
 public sealed class TmdbGenreDto
@@ -42,4 +47,23 @@ public sealed class TmdbGenreDto
 
     [JsonPropertyName("name")]
     public string? Name { get; set; }
+}
+
+// bloco de créditos
+public sealed class TmdbCreditsDto
+{
+    [JsonPropertyName("cast")]
+    public List<TmdbCastDto> Cast { get; set; } = [];
+}
+
+public sealed class TmdbCastDto
+{
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
+
+    [JsonPropertyName("character")]
+    public string? Character { get; set; }
+
+    [JsonPropertyName("order")]
+    public int? Order { get; set; }
 }

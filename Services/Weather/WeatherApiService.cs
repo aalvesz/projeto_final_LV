@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Net.Http.Headers;
 using System.Text.Json;
 using Microsoft.Extensions.Caching.Memory;
 using projeto_final_LV.Models.Weather;
@@ -20,18 +21,19 @@ public sealed class WeatherApiService : IWeatherApiService
         _logger = logger;
     }
 
-    public Task<OpenMeteoForecastDto> GetDailyForecastAsync(double lat, double lon, CancellationToken ct = default)
+    public Task<WeatherDailySummary?> GetDailySummaryAsync(
+        double latitude,
+        double longitude,
+        CancellationToken ct = default)
     {
-        var latKey = Math.Round(lat, 4);
-        var lonKey = Math.Round(lon, 4);
-        var cacheKey = $"weather:open-meteo:{latKey}:{lonKey}";
+        var latStr = latitude.ToString(CultureInfo.InvariantCulture);
+        var lonStr = longitude.ToString(CultureInfo.InvariantCulture);
+
+        var cacheKey = $"weather:{latStr}:{lonStr}";
 
         return _cache.GetOrCreateAsync(cacheKey, async entry =>
         {
             entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
-
-            var latStr = lat.ToString(CultureInfo.InvariantCulture);
-            var lonStr = lon.ToString(CultureInfo.InvariantCulture);
 
             var url =
                 $"forecast?latitude={latStr}" +
@@ -39,32 +41,58 @@ public sealed class WeatherApiService : IWeatherApiService
                 $"&daily=temperature_2m_max,temperature_2m_min" +
                 $"&timezone=auto";
 
+            using var req = new HttpRequestMessage(HttpMethod.Get, url);
+            req.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
             var at = DateTimeOffset.UtcNow;
             HttpResponseMessage res;
 
             try
             {
-                res = await _http.GetAsync(url, ct);
+                res = await _http.SendAsync(req, ct);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Open-Meteo failed | url={Url} | at={At}", url, at);
+                _logger.LogError(ex,
+                    "Open-Meteo failed | endpoint={Endpoint} | lat={Lat} | lon={Lon} | at={At}",
+                    "forecast", latStr, lonStr, at);
                 throw;
             }
 
-            _logger.LogInformation("Open-Meteo call | url={Url} | status={Status} | at={At}", url, (int)res.StatusCode, at);
+            _logger.LogInformation(
+                "Open-Meteo call | endpoint={Endpoint} | lat={Lat} | lon={Lon} | status={Status} | at={At}",
+                "forecast", latStr, lonStr, (int)res.StatusCode, at);
 
             if (!res.IsSuccessStatusCode)
             {
                 var body = await res.Content.ReadAsStringAsync(ct);
-                _logger.LogError("Open-Meteo error body | body={Body}", body);
+                _logger.LogError("Open-Meteo error body: {Body}", body);
                 throw new HttpRequestException($"Open-Meteo retornou {(int)res.StatusCode}");
             }
 
             await using var stream = await res.Content.ReadAsStreamAsync(ct);
-            var data = await JsonSerializer.DeserializeAsync<OpenMeteoForecastDto>(stream, JsonOptions, ct);
+            var dto = await JsonSerializer.DeserializeAsync<WeatherForecastDto>(stream, JsonOptions, ct);
 
-            return data ?? new OpenMeteoForecastDto();
+            if (dto?.daily is null ||
+                dto.daily.time.Count == 0)
+            {
+                return null;
+            }
+
+            // Pega o primeiro dia retornado
+            var dateStr = dto.daily.time[0];
+            var min = dto.daily.temperature_2m_min?.ElementAtOrDefault(0);
+            var max = dto.daily.temperature_2m_max?.ElementAtOrDefault(0);
+
+            if (!DateOnly.TryParse(dateStr, out var date))
+                date = DateOnly.FromDateTime(DateTime.UtcNow.Date);
+
+            return new WeatherDailySummary
+            {
+                Date = date,
+                Min = min,
+                Max = max
+            };
         })!;
     }
 }

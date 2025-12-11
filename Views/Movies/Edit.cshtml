@@ -1,0 +1,97 @@
+@model projeto_final_LV.Models.Movie
+
+@{
+    ViewData["Title"] = "Editar filme";
+}
+
+<div class="container py-4">
+    <div class="mb-3">
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-link p-0">
+            &laquo; Voltar aos detalhes
+        </a>
+    </div>
+
+    <h1 class="mb-4">Editar filme</h1>
+
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="post" class="row g-3">
+        @Html.AntiForgeryToken()
+
+        <div class="col-12 col-md-8">
+            <div class="mb-3">
+                <label asp-for="Titulo" class="form-label"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="TituloOriginal" class="form-label"></label>
+                <input asp-for="TituloOriginal" class="form-control" />
+                <span asp-validation-for="TituloOriginal" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Sinopse" class="form-label"></label>
+                <textarea asp-for="Sinopse" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Sinopse" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Genero" class="form-label"></label>
+                <input asp-for="Genero" class="form-control" />
+                <span asp-validation-for="Genero" class="text-danger"></span>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-12 col-md-4">
+                    <label asp-for="Lingua" class="form-label"></label>
+                    <input asp-for="Lingua" class="form-control" />
+                    <span asp-validation-for="Lingua" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label asp-for="Duracao" class="form-label"></label>
+                    <input asp-for="Duracao" class="form-control" />
+                    <span asp-validation-for="Duracao" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label asp-for="NotaMedia" class="form-label"></label>
+                    <input asp-for="NotaMedia" class="form-control" />
+                    <span asp-validation-for="NotaMedia" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ElencoPrincipal" class="form-label"></label>
+                <textarea asp-for="ElencoPrincipal" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="ElencoPrincipal" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="mb-3">
+                <label asp-for="CidadeReferencia" class="form-label"></label>
+                <input asp-for="CidadeReferencia" class="form-control" />
+                <span asp-validation-for="CidadeReferencia" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Latitude" class="form-label"></label>
+                <input asp-for="Latitude" class="form-control" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Longitude" class="form-label"></label>
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Salvar
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

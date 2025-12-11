@@ -1,0 +1,104 @@
+@model projeto_final_LV.Models.ViewModels.MovieDetailsVm
+
+@{
+    ViewData["Title"] = "Detalhes do filme";
+    var m = Model.Movie;
+}
+
+<div class="container py-4">
+    <div class="mb-3">
+        <a asp-controller="Movies" asp-action="Index" class="btn btn-link p-0">
+            &laquo; Voltar ao catálogo
+        </a>
+    </div>
+
+    <div class="mb-3">
+        <a asp-controller="Movies" asp-action="Edit" asp-route-id="@m.Id" class="btn btn-sm btn-outline-primary me-2">
+            Editar
+        </a>
+        <a asp-controller="Movies" asp-action="Delete" asp-route-id="@m.Id" class="btn btn-sm btn-outline-danger">
+            Excluir
+        </a>
+    </div>
+
+
+
+    <div class="row g-4">
+        <div class="col-12 col-md-8">
+            <h1 class="mb-3">@m.Titulo</h1>
+
+            @if (!string.IsNullOrWhiteSpace(m.TituloOriginal) && m.TituloOriginal != m.Titulo)
+            {
+                <p class="text-muted fst-italic">
+                    Título original: @m.TituloOriginal
+                </p>
+            }
+
+            <p>
+                <strong>Lançamento:</strong>
+                @(m.DataLancamento?.ToString("dd/MM/yyyy") ?? "-")
+            </p>
+
+            <p>
+                <strong>Gênero:</strong>
+                @(string.IsNullOrWhiteSpace(m.Genero) ? "-" : m.Genero)
+            </p>
+
+            <p>
+                <strong>Idioma:</strong>
+                @(string.IsNullOrWhiteSpace(m.Lingua) ? "-" : m.Lingua)
+            </p>
+
+            <p>
+                <strong>Duração:</strong>
+                @(m.Duracao.HasValue ? $"{m.Duracao} min" : "-")
+            </p>
+
+            <p>
+                <strong>Nota média:</strong>
+                @(m.NotaMedia?.ToString("0.0") ?? "-")
+            </p>
+
+            <h5 class="mt-4">Sinopse</h5>
+            <p>
+                @(string.IsNullOrWhiteSpace(m.Sinopse) ? "Sem sinopse disponível." : m.Sinopse)
+            </p>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="mb-3">
+                <strong>Cidade de referência:</strong>
+                <div>
+                    @(string.IsNullOrWhiteSpace(m.CidadeReferencia) ? "Não informada." : m.CidadeReferencia)
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <strong>Coordenadas:</strong>
+                <div>
+                    @if (m.Latitude.HasValue && m.Longitude.HasValue)
+                    {
+                        @($"Lat: {m.Latitude:F4}, Lon: {m.Longitude:F4}")
+                    }
+                    else
+                    {
+                        <span class="text-warning">
+                            Latitude/Longitude não preenchidas. Preencha para habilitar a previsão do tempo.
+                        </span>
+                    }
+                </div>
+            </div>
+
+            @if (m.Latitude.HasValue && m.Longitude.HasValue)
+            {
+                <partial name="_WeatherBlock" model="Model.Weather" />
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    Para exibir a previsão do tempo, preencha Latitude e Longitude deste filme.
+                </div>
+            }
+        </div>
+    </div>
+</div>

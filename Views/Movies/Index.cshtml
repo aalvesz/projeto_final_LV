@@ -1,0 +1,71 @@
+@model IReadOnlyList<projeto_final_LV.Models.Movie>
+
+@{
+    ViewData["Title"] = "Catálogo de Filmes";
+}
+
+<div class="box-catalog">
+    <h1>Catálogo de Filmes</h1>
+    <p class="page-catalog">Explore nossa coleção de filmes disponíveis para você.</p>
+</div>
+
+<!-- Botões de exportação + ações -->
+<div class="text-center mb-4">
+    <form method="get" asp-action="ExportExcel" asp-controller="Movies" class="d-inline">
+        <button type="submit" class="btn btn-success btn-lg">
+            Exportar catálogo para Excel
+        </button>
+    </form>
+
+    <form method="get" asp-action="ExportCsv" asp-controller="Movies" class="d-inline ms-2">
+        <button type="submit" class="btn btn-outline-success btn-lg">
+            Exportar catálogo para CSV
+        </button>
+    </form>
+</div>
+
+<div class="text-center mb-4">
+    <a class="btn btn-outline-secondary me-2" asp-controller="Tmdb" asp-action="Search">
+        Buscar no TMDb
+    </a>
+    <a class="btn btn-primary" asp-controller="Movies" asp-action="Create">
+        Novo filme
+    </a>
+</div>
+
+@if (Model is null || Model.Count == 0)
+{
+    <div class="alert alert-info text-center mb-5">
+        Nenhum filme importado ou cadastrado ainda.
+    </div>
+}
+else
+{
+    <!-- Cards dinâmicos -->
+    <div class="d-flex justify-content-center gap-4 mb-5 flex-wrap">
+        @foreach (var m in Model)
+        {
+            var posterUrl = !string.IsNullOrWhiteSpace(m.PosterPath)
+                ? $"https://image.tmdb.org/t/p/w342{m.PosterPath}"
+                : Url.Content("~/lib/images/cartaz/avatar.png"); // fallback
+
+            var sinopseCurta = string.IsNullOrWhiteSpace(m.Sinopse)
+                ? "Sinopse não disponível."
+                : (m.Sinopse!.Length > 150 ? m.Sinopse.Substring(0, 147) + "..." : m.Sinopse);
+
+            <div class="card" style="width: 18rem;">
+                <img src="@posterUrl" class="card-img-cartaz" alt="@m.Titulo" />
+                <div class="card-body">
+                    <h5 class="card-title">@m.Titulo</h5>
+                    <p class="card-text">@sinopseCurta</p>
+                    <a asp-controller="Movies"
+                       asp-action="Details"
+                       asp-route-id="@m.Id"
+                       class="btn btn-primary">
+                        Ver detalhes
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+}

@@ -4,5 +4,8 @@ namespace projeto_final_LV.Services.Weather;
 
 public interface IWeatherApiService
 {
-    Task<OpenMeteoForecastDto> GetDailyForecastAsync(double lat, double lon, CancellationToken ct = default);
+    Task<WeatherDailySummary?> GetDailySummaryAsync(
+        double latitude,
+        double longitude,
+        CancellationToken ct = default);
 }

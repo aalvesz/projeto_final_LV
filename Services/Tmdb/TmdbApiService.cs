@@ -65,19 +65,22 @@ public sealed class TmdbApiService : ITmdbApiService
         {
             entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
 
-            var url = $"movie/{tmdbId}?language={Uri.EscapeDataString(_opt.Language)}";
+            var url =
+                $"movie/{tmdbId}?language={Uri.EscapeDataString(_opt.Language)}" +
+                $"&append_to_response=credits";
 
             using var req = new HttpRequestMessage(HttpMethod.Get, WithAuth(url));
             req.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             return await SendAsync<TmdbMovieDetailsDto>(
                 req,
-                endpoint: "movie/{id}",
+                endpoint: "movie/{tmdbId}",
                 parameters: new { tmdbId, _opt.Language },
                 ct
             );
         })!;
     }
+
 
     public Task<TmdbMovieImagesDto> GetMovieImagesAsync(int tmdbId, CancellationToken ct = default)
     {

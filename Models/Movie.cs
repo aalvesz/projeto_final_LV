@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace projeto_final_LV.Models;
 
-public sealed class Filme
+public sealed class Movie
 {
     public int Id { get; set; }
 
