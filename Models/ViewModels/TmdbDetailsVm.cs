@@ -1,3 +1,5 @@
+using projeto_final_LV.Models.ViewModels;
+
 namespace projeto_final_LV.Models.ViewModels;
 
 public sealed class TmdbDetailsVm
@@ -13,4 +15,8 @@ public sealed class TmdbDetailsVm
     public string? Lingua { get; set; }
     public string? PosterUrl { get; set; }
     public List<string> PosterUrlsExtras { get; set; } = [];
+    public double? Latitude { get; set; }
+    public double? Longitude { get; set; }
+    public WeatherBlockVm Weather { get; set; } = new();
+
 }

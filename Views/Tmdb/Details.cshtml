@@ -45,6 +45,9 @@
 
             <h5>Sinopse</h5>
             <p>@(string.IsNullOrWhiteSpace(Model.Sinopse) ? "Sem sinopse." : Model.Sinopse)</p>
+
+            <hr class="my-4" />
+            <partial name="_WeatherBlock" model="Model.Weather" />
         </div>
     </div>
 

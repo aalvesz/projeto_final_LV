@@ -42,6 +42,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/dugab/Documents/GitHub/projeto_final_LV/Views/Shared/_WeatherBlock.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9XZWF0aGVyQmxvY2suY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dugab/Documents/GitHub/projeto_final_LV/Views/Tmdb/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG1kYlxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/dugab/Documents/GitHub/projeto_final_LV/Views/Tmdb/Search.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG1kYlxTZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
