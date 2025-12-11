@@ -5,7 +5,7 @@ using projeto_final_LV.Services.Tmdb;
 
 namespace projeto_final_LV.Controllers;
 
-public sealed class TmdbController : Controller
+public sealed class TmdbController : AppController
 {
     private readonly ITmdbApiService _tmdb;
 

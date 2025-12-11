@@ -1,0 +1,29 @@
+@model projeto_final_LV.Models.Movie
+
+@{
+    ViewData["Title"] = "Excluir filme";
+}
+
+<div class="container py-4">
+    <div class="mb-3">
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-link p-0">
+            &laquo; Voltar aos detalhes
+        </a>
+    </div>
+
+    <h1 class="mb-4 text-danger">Excluir filme</h1>
+
+    <div class="alert alert-warning">
+        Tem certeza que deseja excluir o filme
+        <strong>@Model.Titulo</strong> (Id @Model.Id)?
+        Esta ação não poderá ser desfeita.
+    </div>
+
+    <form asp-action="ConfirmDelete" asp-route-id="@Model.Id" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger">Excluir</button>
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary ms-2">
+            Cancelar
+        </a>
+    </form>
+</div>

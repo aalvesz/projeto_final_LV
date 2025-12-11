@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="~/projeto_final_LV.styles.css" asp-append-version="true" />
 </head>
 <body>
+    
+    @{
+        var cidadeAtual = Context.Request.Cookies["CidadeSelecionada"];
+    }
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -55,15 +60,35 @@
         <div class="navbar-nav ms-auto"> 
             <div class="cidade-box">
                 <form asp-controller="Home" asp-action="DefinirCidade" method="post">
+                    @Html.AntiForgeryToken()
                     <select name="cidade" id="cidade" onchange="this.form.submit()"
                             class="form-select border border-gray-200 rounded-lg px-3 py-2 text-gray-600 font-medium">
                         <option value="">Escolha a cidade</option>
-                        <option value="Ariquemes">Ariquemes</option>
-                        <option value="Ji-Parana">Ji-Paraná</option>
-                        <option value="Ouro Preto d'Oeste">Ouro Preto d'Oeste</option>
-                        <option value="Presidente Médici">Presidente Médici</option>
-                        <option value="Vilhena">Vilhena</option>
-                        
+
+                        <option value="Ariquemes"
+                                selected="@(cidadeAtual == "Ariquemes" ? "selected" : null)">
+                            Ariquemes
+                        </option>
+
+                        <option value="Ji-Parana"
+                                selected="@(cidadeAtual == "Ji-Parana" ? "selected" : null)">
+                            Ji-Paraná
+                        </option>
+
+                        <option value="Ouro Preto d'Oeste"
+                                selected="@(cidadeAtual == "Ouro Preto d'Oeste" ? "selected" : null)">
+                            Ouro Preto d'Oeste
+                        </option>
+
+                        <option value="Presidente Médici"
+                                selected="@(cidadeAtual == "Presidente Médici" ? "selected" : null)">
+                            Presidente Médici
+                        </option>
+
+                        <option value="Vilhena"
+                                selected="@(cidadeAtual == "Vilhena" ? "selected" : null)">
+                            Vilhena
+                        </option>
                     </select>
                 </form>
             </div>
