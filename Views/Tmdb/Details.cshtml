@@ -1,0 +1,67 @@
+@model projeto_final_LV.Models.ViewModels.TmdbDetailsVm
+
+@{
+    ViewData["Title"] = Model.Titulo;
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-start mb-3">
+        <h1 class="mb-0">@Model.Titulo</h1>
+        <a class="btn btn-outline-secondary" asp-controller="Tmdb" asp-action="Search">Voltar</a>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-12 col-md-4">
+            @if (!string.IsNullOrWhiteSpace(Model.PosterUrl))
+            {
+                <img src="@Model.PosterUrl" class="img-fluid rounded shadow-sm" alt="Poster" />
+            }
+            else
+            {
+                <div class="alert alert-secondary">Sem poster disponível.</div>
+            }
+        </div>
+
+        <div class="col-12 col-md-8">
+            <dl class="row">
+                <dt class="col-sm-3">Título original</dt>
+                <dd class="col-sm-9">@Model.TituloOriginal</dd>
+
+                <dt class="col-sm-3">Lançamento</dt>
+                <dd class="col-sm-9">@Model.DataLancamento</dd>
+
+                <dt class="col-sm-3">Gêneros</dt>
+                <dd class="col-sm-9">@Model.Generos</dd>
+
+                <dt class="col-sm-3">Duração</dt>
+                <dd class="col-sm-9">@((Model.Duracao is null) ? "-" : $"{Model.Duracao} min")</dd>
+
+                <dt class="col-sm-3">Nota</dt>
+                <dd class="col-sm-9">@Model.NotaMedia</dd>
+
+                <dt class="col-sm-3">Idioma</dt>
+                <dd class="col-sm-9">@Model.Lingua</dd>
+            </dl>
+
+            <h5>Sinopse</h5>
+            <p>@(string.IsNullOrWhiteSpace(Model.Sinopse) ? "Sem sinopse." : Model.Sinopse)</p>
+
+            <hr class="my-4" />
+            <partial name="_WeatherBlock" model="Model.Weather" />
+        </div>
+    </div>
+
+    @if (Model.PosterUrlsExtras.Count > 0)
+    {
+        <hr class="my-4" />
+        <h4 class="mb-3">Outros posters</h4>
+        <div class="row g-3">
+            @foreach (var url in Model.PosterUrlsExtras)
+            {
+                <div class="col-6 col-md-3">
+                    <img src="@url" class="img-fluid rounded shadow-sm" alt="Poster extra" />
+                </div>
+            }
+        </div>
+    }
+</div>

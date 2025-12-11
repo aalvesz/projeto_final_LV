@@ -1,17 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "aHoGJojv5Mc=",
+  "dgSpecHash": "zwHPSW1Z6Lg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Amanda\\Documents\\Github\\projeto_final_LV\\projeto_final_LV.csproj",
+  "projectFilePath": "C:\\Users\\dugab\\Documents\\GitHub\\projeto_final_LV\\projeto_final_LV.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Amanda\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.0\\microsoft.aspnetcore.mvc.razor.extensions.6.0.0.nupkg.sha512",
-    "C:\\Users\\Amanda\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\10.0.1\\microsoft.aspnetcore.mvc.razor.runtimecompilation.10.0.1.nupkg.sha512",
-    "C:\\Users\\Amanda\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.0\\microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
-    "C:\\Users\\Amanda\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.2\\microsoft.codeanalysis.analyzers.3.3.2.nupkg.sha512",
-    "C:\\Users\\Amanda\\.nuget\\packages\\microsoft.codeanalysis.common\\4.0.0\\microsoft.codeanalysis.common.4.0.0.nupkg.sha512",
-    "C:\\Users\\Amanda\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.0.0\\microsoft.codeanalysis.csharp.4.0.0.nupkg.sha512",
-    "C:\\Users\\Amanda\\.nuget\\packages\\microsoft.codeanalysis.razor\\6.0.0\\microsoft.codeanalysis.razor.6.0.0.nupkg.sha512",
-    "C:\\Users\\Amanda\\.nuget\\packages\\microsoft.extensions.dependencymodel\\10.0.1\\microsoft.extensions.dependencymodel.10.0.1.nupkg.sha512"
+    "C:\\Users\\dugab\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.0\\microsoft.aspnetcore.mvc.razor.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\dugab\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\10.0.1\\microsoft.aspnetcore.mvc.razor.runtimecompilation.10.0.1.nupkg.sha512",
+    "C:\\Users\\dugab\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.0\\microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
+    "C:\\Users\\dugab\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.2\\microsoft.codeanalysis.analyzers.3.3.2.nupkg.sha512",
+    "C:\\Users\\dugab\\.nuget\\packages\\microsoft.codeanalysis.common\\4.0.0\\microsoft.codeanalysis.common.4.0.0.nupkg.sha512",
+    "C:\\Users\\dugab\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.0.0\\microsoft.codeanalysis.csharp.4.0.0.nupkg.sha512",
+    "C:\\Users\\dugab\\.nuget\\packages\\microsoft.codeanalysis.razor\\6.0.0\\microsoft.codeanalysis.razor.6.0.0.nupkg.sha512",
+    "C:\\Users\\dugab\\.nuget\\packages\\microsoft.extensions.dependencymodel\\10.0.1\\microsoft.extensions.dependencymodel.10.0.1.nupkg.sha512"
   ],
   "logs": []
 }

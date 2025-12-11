@@ -1,19 +1,13 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using projeto_final_LV.Models;
 
 namespace projeto_final_LV.Controllers;
 
-public class MovieController : Controller
+public sealed class FilmesController : Controller
 {
-    public IActionResult Movie()
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult ImportFromTmdb([FromForm] int tmdbId)
     {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        return Ok(new { message = "Stub RF03 OK", tmdbId });
     }
 }
