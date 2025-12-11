@@ -110,6 +110,17 @@ p{
   color: var(--white--) !important;
 }
 
+.box-function{
+  margin-left: 2rem;
+  margin-right: 2rem;
+  background: var(--off-white--);
+}
+
+.card-weather{
+  background: var(--off-white--);
+  border-radius: 8px;
+  padding: 5px 10px;
+}
 
 /* Footer */
 
