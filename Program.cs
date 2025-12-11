@@ -2,7 +2,8 @@ using Microsoft.Extensions.Options;
 using projeto_final_LV.Models.Options;
 using projeto_final_LV.Services.Tmdb;
 using projeto_final_LV.Services.Weather;
-
+using projeto_final_LV.Data;
+using projeto_final_LV.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,19 +13,27 @@ builder.Services.AddMemoryCache();
 
 builder.Services.Configure<TmdbOptions>(builder.Configuration.GetSection("Tmdb"));
 
-builder.Services.AddHttpClient<ITmdbApiService, TmdbApiService>((sp, http) =>
+// TMDb 
+builder.Services.AddHttpClient<ITmdbApiService, TmdbApiService>(client =>
 {
-    var opt = sp.GetRequiredService<IOptions<TmdbOptions>>().Value;
-    http.BaseAddress = new Uri(opt.BaseUrl);
+    client.BaseAddress = new Uri("https://api.themoviedb.org/3/");
+    client.Timeout = TimeSpan.FromSeconds(10);
 });
 
-builder.Services.AddHttpClient<IWeatherApiService, WeatherApiService>(http =>
+// Weather
+builder.Services.AddHttpClient<IWeatherApiService, WeatherApiService>(client =>
 {
-    http.BaseAddress = new Uri("https://api.open-meteo.com/v1/");
+    client.BaseAddress = new Uri("https://api.open-meteo.com/v1/");
+    client.Timeout = TimeSpan.FromSeconds(10);
 });
 
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 
 var app = builder.Build();
+
+var cs = builder.Configuration.GetConnectionString("LocalDb")
+         ?? throw new InvalidOperationException("ConnectionStrings:LocalDb não configurado.");
+DatabaseInitializer.EnsureCreated(cs);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

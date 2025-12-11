@@ -70,27 +70,42 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+@* gera um token anti-forgery que o JS vai ler *@
+<form id="__af-token-form" method="post" style="display:none">
+    @Html.AntiForgeryToken()
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<form id="__af-token-form" method="post" style="display:none">
+    @Html.AntiForgeryToken()
+</form>
+
 <script>
-  const tokenEl = document.querySelector('input[name="__RequestVerificationToken"]');
-  const token = tokenEl ? tokenEl.value : null;
+  (function () {
+    const tokenEl = document.querySelector('#__af-token-form input[name="__RequestVerificationToken"]');
+    const token = tokenEl ? tokenEl.value : null;
 
-  document.querySelectorAll(".js-import").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const tmdbId = btn.dataset.tmdbId;
+    document.querySelectorAll(".js-import").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const tmdbId = btn.dataset.tmdbId;
 
-      try {
-        const form = new FormData();
-        form.append("tmdbId", tmdbId);
+        try {
+          const form = new FormData();
+          form.append("tmdbId", tmdbId);
 
-        const res = await axios.post("/Filmes/ImportFromTmdb", form, {
-          headers: token ? { "RequestVerificationToken": token } : {}
-        });
+          const res = await axios.post("/Movies/ImportFromTmdb", form, {
+            headers: token ? { "RequestVerificationToken": token } : {}
+          });
 
-        alert(`Import OK (stub). tmdbId=${res.data.tmdbId}`);
-      } catch (e) {
-        console.error(e);
-        alert("Falha ao importar. Veja o console.");
-      }
+          alert(res.data.message + " | Id local: " + res.data.id);
+        } catch (err) {
+          console.error(err);
+          alert("Falha ao importar. Veja o console.");
+        }
+      });
     });
-  });
+  })();
 </script>
+

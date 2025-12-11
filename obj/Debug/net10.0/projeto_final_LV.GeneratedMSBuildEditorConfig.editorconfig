@@ -34,8 +34,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/dugab/Documents/GitHub/projeto_final_LV/Views/Movie/movie.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVcbW92aWUuY3NodG1s
+[C:/Users/dugab/Documents/GitHub/projeto_final_LV/Views/Movies/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dugab/Documents/GitHub/projeto_final_LV/Views/Movies/Movie.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVzXE1vdmllLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/dugab/Documents/GitHub/projeto_final_LV/Views/Shared/Error.cshtml]
