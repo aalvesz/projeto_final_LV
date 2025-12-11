@@ -1,3 +1,23 @@
+*
+{
+  /* Colors and Fonts */
+  --blue--: #050E3C;
+  --blue2--: #CBDCEB;
+  --black--: #000000;
+  --white--: #FFFFFF;
+  --off-white--: #FCF5EE;
+  --red--: #360213;
+  --yellow--: #FFE08F;
+
+
+  --titulos--: 'Nunito';
+  --titulos2--: 'Roboto' bold;
+  --textos--: 'Roboto';
+
+}
+
+
+
 html {
   font-size: 14px;
 }
@@ -19,7 +39,113 @@ html {
 
 body {
   margin-bottom: 60px;
+  background: var(--blue2--);
 }
+
+h1{
+  font-family: var(--titulos--);
+  color: var(--black--);
+}
+
+h3{
+  font-family: var(--titulos--);
+  color: var(--black--);
+}
+
+.exibicao{
+  font-family: var(--titulos2--);
+  color: var(--black--);
+}
+
+p{
+  font-family: var(--textos--);
+  font-size: 1.5rem;
+  color: var(--black--);
+}
+
+/* Catalogo */
+
+.page-catalog{
+  font-family: var(--textos--);
+  color: var(--red--)
+}
+
+.box-catalog{
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card-img-cartaz{
+  height: 390px;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Carrosel */
+.carousel {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+
+}
+
+/* Garante que a imagem preencha tudo sem distorcer */
+
+/* Deixa as legendas mais bonitas */
+.carousel-caption {
+    padding: 20px;
+    border-radius: 12px;
+    bottom: 20%;
+}
+
+/* Navbar */
+
+.navbar{
+  background: var(--blue--);
+  padding-top: 20px;
+}
+
+.nav-link{
+  color: var(--white--) !important;
+}
+
+
+/* Footer */
+
+footer{
+  background: var(--blue--);
+  color: var(--white--);
+}
+
+footer .container{
+  color: var(--white--);
+}
+
+footer a{
+  color: var(--white--);
+  text-decoration: none;
+}
+
+
+/* Cards */
+.card-img-top{
+ height: 180px;
+ width: 100%;
+}
+
+.card-text{
+  font-family: var(--textos--);
+  color: var(--blue--);
+  font-size: 1.2rem;
+}
+
+.btn-primary{
+  background: var(--blue--);
+  border: none;
+
+}
+
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
