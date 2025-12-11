@@ -1,7 +1,28 @@
+using Microsoft.Extensions.Options;
+using projeto_final_LV.Models.Options;
+using projeto_final_LV.Services.Tmdb;
+using projeto_final_LV.Services.Weather;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddMemoryCache();
+
+builder.Services.Configure<TmdbOptions>(builder.Configuration.GetSection("Tmdb"));
+
+builder.Services.AddHttpClient<ITmdbApiService, TmdbApiService>((sp, http) =>
+{
+    var opt = sp.GetRequiredService<IOptions<TmdbOptions>>().Value;
+    http.BaseAddress = new Uri(opt.BaseUrl);
+});
+
+builder.Services.AddHttpClient<IWeatherApiService, WeatherApiService>(http =>
+{
+    http.BaseAddress = new Uri("https://api.open-meteo.com/v1/");
+});
+
 
 var app = builder.Build();
 
@@ -14,6 +35,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
@@ -25,5 +47,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
-
 app.Run();
+
