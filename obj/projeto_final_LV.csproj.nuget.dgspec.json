@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dugab\\Documents\\GitHub\\projeto_final_LV\\projeto_final_LV.csproj": {}
+    "C:\\Users\\Amanda\\Documents\\Github\\projeto_final_LV\\projeto_final_LV.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dugab\\Documents\\GitHub\\projeto_final_LV\\projeto_final_LV.csproj": {
+    "C:\\Users\\Amanda\\Documents\\Github\\projeto_final_LV\\projeto_final_LV.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dugab\\Documents\\GitHub\\projeto_final_LV\\projeto_final_LV.csproj",
+        "projectUniqueName": "C:\\Users\\Amanda\\Documents\\Github\\projeto_final_LV\\projeto_final_LV.csproj",
         "projectName": "projeto_final_LV",
-        "projectPath": "C:\\Users\\dugab\\Documents\\GitHub\\projeto_final_LV\\projeto_final_LV.csproj",
-        "packagesPath": "C:\\Users\\dugab\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dugab\\Documents\\GitHub\\projeto_final_LV\\obj\\",
+        "projectPath": "C:\\Users\\Amanda\\Documents\\Github\\projeto_final_LV\\projeto_final_LV.csproj",
+        "packagesPath": "C:\\Users\\Amanda\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Amanda\\Documents\\Github\\projeto_final_LV\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\dugab\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Amanda\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -50,6 +44,10 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.105.0, )"
+            },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
               "version": "[10.0.1, )"
@@ -78,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
